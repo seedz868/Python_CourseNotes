@@ -24,4 +24,36 @@ plt.ylabel('fff')
   Grouping data
   
 df_A = df['col1_nominal','col2_nominal','price']
-df_B = df_A.groupby(  ).mean()
+df_B = df_A.groupby(['col1_nominal','col2_nominal'], as_index=False ).mean()
+
+Pivot method makes it more readable
+
+df_pivot = df_B.pivot(index= 'col1_nominal', columns='col1_nomina2')
+
+Heat Maps
+
+plt.pcolor(df_pivot, cmap='RdBBu')
+plt.colorbar()
+plt.show()
+
+  Correlation
+
+sns.regplot(x='', y='', data=df)
+plt.ylim(0,)
+
+Pearson
+  scipy?
+pearson_coef, p_value = stats.pearsonr[df?['horsepower'],df['price']]
+
+  ANOVA analysis of variance
+
+df_anova=df[['make','price']]
+grouped_anova=df_anova.groupby(['make'])
+
+anova_results = stats.f_oneway
+  (
+    grouped_anova.get_group('honda')['price'] , 
+    grouped_anova.get_group('subaru')['price']
+  )
+
+
