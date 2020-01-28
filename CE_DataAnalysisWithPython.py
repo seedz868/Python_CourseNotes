@@ -87,5 +87,45 @@ f_val, p_val = stats.f_oneway
     grouped_test2.get_group('4wd')['price']
   )
         
+Week 4 - 
+
+	Model Development
+
+from sklearn.linear_model import LinearRegression
+
+lm=LinearRegression()
+X=df[[]]
+Y=df[[]]
+
+lm.fit(X,Y)
+Yhat = lm.predict(xnew)
+lm.intercept_
+lm.coef_
+
+Z= df[['a','c','d','s']]
+lm.fit(Z, df['price'])
+Yhat = lm.predict(Xnew)
+
+	Model Evaluation
+	
+regression plot
+
+import seaborn as sns
+
+sns.regplot(x="aaa", y="price", data=df)
+plt.ylim(0,)
+
+residual plot
+
+import seabord as sns
+
+sns.residplot(df['aasd'],df['eee'])
+
+
+
+
+
+
+
 
 
