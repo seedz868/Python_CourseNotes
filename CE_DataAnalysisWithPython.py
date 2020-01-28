@@ -119,8 +119,13 @@ residual plot
 
 import seabord as sns
 
-sns.residplot(df['aasd'],df['eee'])
+sns.residplot(df['aasd'],df['price'])
 
+Distribution Plot - predicted value vs actual value
+
+import seaborn as sns
+ax1 = sns.distplot(df["price"], hist=False, color="r", label="Actual Value")
+sns.distplot(Yhat, hist=False, color="b", label="Fitted Values", ax=ax1)
 
 
 
