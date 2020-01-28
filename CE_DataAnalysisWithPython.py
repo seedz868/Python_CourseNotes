@@ -42,6 +42,11 @@ plt.ylabel('fff')
 df_A = df[['col1_nominal','col2_nominal','price']]
 df_B = df_A.groupby(['col1_nominal','col2_nominal'], as_index=False ).mean()
 
+grouped_test2=df_gptest[['drive-wheels', 'price']].groupby(['drive-wheels'])
+grouped_test2.get_group('4wd')['price'] # obtain the values of the method group
+
+
+
   Pivot Tables
   
 makes it more readable
@@ -74,5 +79,13 @@ anova_results = stats.f_oneway
     grouped_anova.get_group('honda')['price'] , 
     grouped_anova.get_group('subaru')['price']
   )
+
+f_val, p_val = stats.f_oneway
+  (
+    grouped_test2.get_group('fwd')['price'], 
+    grouped_test2.get_group('rwd')['price'], 
+    grouped_test2.get_group('4wd')['price']
+  )
+        
 
 
