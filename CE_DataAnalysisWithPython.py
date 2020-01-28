@@ -127,7 +127,18 @@ import seaborn as sns
 ax1 = sns.distplot(df["price"], hist=False, color="r", label="Actual Value")
 sns.distplot(Yhat, hist=False, color="b", label="Fitted Values", ax=ax1)
 
+	Polynpomial Regression	
 
+f=np.polyfit(x,y,3)
+p=np.poly1d(f) # to get the actual expression
+
+from sklearn.preprocessing import PolynomialFeatures
+pr=PolynomialFeatures(degree=2)
+
+x_polly=pr.fit_transform(x[['aaa','ddd']], include_bias=True)
+
+pr=PolynomialFeatures(degree=2)
+pr.fit_transform([1,2], include_bias=False)
 
 
 
