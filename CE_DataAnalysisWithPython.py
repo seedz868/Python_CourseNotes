@@ -1,9 +1,25 @@
 
+# change the name of the index for drive_wheels_count 
+drive_wheels_counts.index.name = 'drive-wheels'
+
+	              value_counts
+drive-wheels	
+fwd	            118
+rwd	            75
+4wd	            8
+
 
 Week 3 
 
   Descriptive Stats
 
+df.describe()  
+df.describe(include=['object'])  
+df['drive-wheels'].value_counts() # not df[['']]
+df['drive-wheels'].value_counts().to_frame
+
+
+  
 column1_counts=df['column1'].values_counts()
 column1_counts.rename(columns={'name_before':'name_after'}, inplace=True)
 column1_counts.index.name = 'name_before
@@ -23,12 +39,15 @@ plt.ylabel('fff')
 
   Grouping data
   
-df_A = df['col1_nominal','col2_nominal','price']
+df_A = df[['col1_nominal','col2_nominal','price']]
 df_B = df_A.groupby(['col1_nominal','col2_nominal'], as_index=False ).mean()
 
-Pivot method makes it more readable
+  Pivot Tables
+  
+makes it more readable
 
 df_pivot = df_B.pivot(index= 'col1_nominal', columns='col1_nomina2')
+grouped_pivot = grouped_pivot.fillna(0) #fill missing values with 0
 
 Heat Maps
 
@@ -39,7 +58,7 @@ plt.show()
   Correlation
 
 sns.regplot(x='', y='', data=df)
-plt.ylim(0,)
+plt.ylim(0,) # lower limit for y axis
 
 Pearson
   scipy?
