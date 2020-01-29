@@ -94,8 +94,8 @@ Week 4 -
 from sklearn.linear_model import LinearRegression
 
 lm=LinearRegression()
-X=df[[]]
-Y=df[[]]
+X = df[['highway-mpg']]
+Y = df['price']
 
 lm.fit(X,Y)
 Yhat = lm.predict(xnew)
@@ -104,7 +104,9 @@ lm.coef_
 
 Z= df[['a','c','d','s']]
 lm.fit(Z, df['price'])
+#To obtain a prediction Yhat from some value x1
 Yhat = lm.predict(Xnew)
+
 
 	Model Evaluation
 	
@@ -128,20 +130,47 @@ ax1 = sns.distplot(df["price"], hist=False, color="r", label="Actual Value")
 sns.distplot(Yhat, hist=False, color="b", label="Fitted Values", ax=ax1)
 
 	Polynpomial Regression	
+transform data into a polynomial
 
+	
 f=np.polyfit(x,y,3)
 p=np.poly1d(f) # to get the actual expression
 
 from sklearn.preprocessing import PolynomialFeatures
 pr=PolynomialFeatures(degree=2)
-
-x_polly=pr.fit_transform(x[['aaa','ddd']], include_bias=True)
+x_polly=pr.fit_transform(x[['aaa','ddd']], include_bias=False) # transform features
 
 pr=PolynomialFeatures(degree=2)
 pr.fit_transform([1,2], include_bias=False)
 
+	Pre Processing
+from sklearn.preprocessing import StandardScalar
+SCALE=StandardScalar()
+SCALE.fit(x_data[['horsepower','highwayMPG']])
+x_scale=SCALE.transform(x_data[['horsepower','highwayMPG']])
 
+	Pipelines
+Steps to getting a prediction:
+	Normzn > Poly transform > Linear Reg
 
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import StandardScalar
+from sklearn.pipeline import Pipeline
 
+a LIST of TUPLES
+
+Input = [
+	 ('scale',StandardScaler()), 
+	 ('polynomial',PolynomialFeatures(degree=2)),
+	 ('mode',LinearRegression())
+	]
+
+pipe=Pipeline(Input)
+pipe.train(X['horsepower','curbweight','enginesize','highway'], y)
+#this trains the model
+
+yhat = pipe.predict(X[['horsepower','curbweight','enginesize','highway']])
+#get a prediction
 
 
