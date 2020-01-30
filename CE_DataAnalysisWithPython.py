@@ -173,4 +173,7 @@ pipe.train(X['horsepower','curbweight','enginesize','highway'], y)
 yhat = pipe.predict(X[['horsepower','curbweight','enginesize','highway']])
 #get a prediction
 
+	Mean Sq Error
+from sklearn.metrics import mean_squared_error
+mean_sq_error(df['price'], Y_predict_simple_fit)
 
