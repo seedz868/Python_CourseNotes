@@ -196,8 +196,66 @@ import numpy as np
 
 new_input=np.arange(1,101,1).reshape(-1,1)
 
-
+Week 5
+	Model evaluation and refinement
 	
+Train Test Split
+
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test, =  train_test_split(x_data, y_data, test_size=0.3, random_state=0)
+
+Cross Validation 
+
+from sklearn.model_selection import cross_val_score
+scores=cross_val_score(lr,x_data,y_data,cv=3)
+lr is a linear regression model = outputs 3 Rsquared values
+
+Cross val PREDICT
+
+from sklearn.model_selection import cross_val_prediict
+yhat=cross_val_predict(lr2e, x_data, y_data, cv=3)
+putputs the actua lpredict values for each Rsquared
+
+
+
+	Overfitting
+
+rSQU_test=[]
+order = [1,2,3,4]
+for n in order:
+	pr=PolynomialFeatures(degree=n)
+	x_train_pr=pr.fit_transform(x_train[['horsepower']])
+	x_test_pr =pr.fit_transform(x_test[['horsepower'v ]])
+	
+	lr.fit(x_train_pr,y_train)
+	
+	rSQU_test.append(lr.score(x_test_pr, y_test))
+	
+
+	Ridge Regression
+from sklearn.linear_model import Ridge
+
+Rigemodel=Ridge(alpha=0.1)
+Rigemodel.fit(X,y)
+
+Yhat = Rigemodel.predict(X)
+
+	Grid Search
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import GridSearchCV
+
+parameters1=[{'alpha':[0.001,0.01,0.1,1.0,10,100,1000]}]
+
+RR = Ridge()
+Grid1 = GridSearchCV(RR, parameters1,cv=4)
+
+Grid1.fit(x_data[['horsepower','curbweight','engineSize','highwayMPG']], y_data)
+
+Grid1.best_estimator_
+
+scores = Grid1.cv_results_
+score['mean_test_score']
+
 
 
 
