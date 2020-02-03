@@ -114,6 +114,11 @@ regression plot
 
 import seaborn as sns
 
+----
+width = 12
+height = 10
+plt.figure(figsize=(width, height))
+----
 sns.regplot(x="aaa", y="price", data=df)
 plt.ylim(0,)
 
@@ -163,11 +168,12 @@ a LIST of TUPLES
 Input = [
 	 ('scale',StandardScaler()), 
 	 ('polynomial',PolynomialFeatures(degree=2)),
-	 ('mode',LinearRegression())
+	 ('model',LinearRegression())
 	]
 
 pipe=Pipeline(Input)
 pipe.train(X['horsepower','curbweight','enginesize','highway'], y)
+?pipe.fit(X['horsepower','curbweight','enginesize','highway'], y)
 #this trains the model
 
 yhat = pipe.predict(X[['horsepower','curbweight','enginesize','highway']])
@@ -176,4 +182,22 @@ yhat = pipe.predict(X[['horsepower','curbweight','enginesize','highway']])
 	Mean Sq Error
 from sklearn.metrics import mean_squared_error
 mean_sq_error(df['price'], Y_predict_simple_fit)
+
+	coeff of determination
+Rsqared = 1- (MSE of fit regression line / MSE of average of data )
+
+X=df[['highwayMPG']]
+Y=df['price']
+lm.fit(X,Y)
+lm.score(X,Y) == Rsquared (how much of the price is explained by the model)
+
+	Preiction and decision making
+import numpy as np
+
+new_input=np.arange(1,101,1).reshape(-1,1)
+
+
+	
+
+
 
