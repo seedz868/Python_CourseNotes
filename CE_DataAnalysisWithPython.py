@@ -65,6 +65,9 @@ plt.show()
 sns.regplot(x='', y='', data=df)
 plt.ylim(0,) # lower limit for y axis
 
+#eveything as correlated to price, sorted:
+df.corr()['price'].sort_values()
+
 Pearson
   scipy?
 pearson_coef, p_value = stats.pearsonr[df?['horsepower'],df['price']]
