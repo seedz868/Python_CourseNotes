@@ -1,3 +1,16 @@
+Week 1
+	Scientific Computing
+		- Pandas data structures and tools
+		- NumPy  arrays and matrices
+		- SciPy  intergrals, solving ODEs, optimizers
+	Vis
+		- MatplotLib
+		- Seaborn
+	Algorithmic
+		- SciKit Learn ML Regression etc
+		- Statsmodels explore data, stats models, stats tests
+	
+
 
 # change the name of the index for drive_wheels_count 
 drive_wheels_counts.index.name = 'drive-wheels'
