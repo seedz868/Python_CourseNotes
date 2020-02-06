@@ -54,9 +54,18 @@ df['asd'] = (df['asd'] - df['asd'].mean  )/ df.stf('asd')
 	
 	Binning
 	
-bins = np.linspace(min, max, 4)
-groupNames
-df = pd.cut
+VOI = df['price']
+bins = np.linspace(min(voi), max(voi), 4)
+groupNames=["Low","Med","High"]
+df['price_BIN'] = pd.cut(VOI, bins,labels=groupNames, inlude_lowest=True)
+
+	Dummy Variables
+	
+pandas.get_dummies()
+VOI=df['fuel']
+pd.get_dummies(VOI)
+	makes N new columns, 1 for each level in VOI (in this case gas and diesel)
+ 
 	
 # change the name of the index for drive_wheels_count 
 drive_wheels_counts.index.name = 'drive-wheels'
@@ -68,8 +77,14 @@ rwd	            75
 4wd	            8
 
 
-Week 3 
-
+Week 3
+	exploratory data analysis
+	descriptive stats
+	groupBy
+	anova
+	correlation
+	correlation statistics
+	
   Descriptive Stats
 
 df.describe()  
@@ -100,6 +115,17 @@ plt.ylabel('fff')
   
 df_A = df[['col1_nominal','col2_nominal','price']]
 df_B = df_A.groupby(['col1_nominal','col2_nominal'], as_index=False ).mean()
+df_B
+	col1    col2   price
+	4wd	hatch  3231 
+	4wd	sedan  5345 
+	fwd	conv   6653
+	fwd	hardt  4322 
+	fwd	sedan  3316   
+	rwd	conv   7755  
+	rwd	hatch  7533 
+	  
+
 
 grouped_test2=df_gptest[['drive-wheels', 'price']].groupby(['drive-wheels'])
 grouped_test2.get_group('4wd')['price'] # obtain the values of the method group
