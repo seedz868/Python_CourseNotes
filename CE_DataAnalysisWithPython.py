@@ -1,4 +1,6 @@
 Week 1
+	Importing data
+	
 	Scientific Computing
 		- Pandas data structures and tools
 		- NumPy  arrays and matrices
@@ -10,8 +12,52 @@ Week 1
 		- SciKit Learn ML Regression etc
 		- Statsmodels explore data, stats models, stats tests
 	
+update column names in a df
+	headers = ['dsa','reew','wwerr','ahhh']
+	df.columns=headers # Does the relpacement
+		
+df.dtypes # all data types of columss
+df.describe()
+df.describe(include='all')
+df.info()
 
+Week 2 
 
+	Data Wrangling
+	
+missing values
+formatting
+normalization
+binning
+categorical to numeric
+
+eacjh col is a Pandas Series
+
+df.dropna()
+	axis=0 row
+	axis=1 col
+	
+df.replace(missing_value, new_value)
+MEAN = df['columnToFix'].mean()
+df['columnToFix'].replace(np.nan, MEAN)
+
+Convert a column from MPG to L/100km
+
+df['aa'] = 235/df['aa']
+df.rename(columns={'aa':'BBnew'} , inplace=True)
+
+df['price'] = df['price'].astype('int')
+		
+	Normalization
+
+df['asd'] = (df['asd'] - df['asd'].mean  )/ df.stf('asd')
+	
+	Binning
+	
+bins = np.linspace(min, max, 4)
+groupNames
+df = pd.cut
+	
 # change the name of the index for drive_wheels_count 
 drive_wheels_counts.index.name = 'drive-wheels'
 
