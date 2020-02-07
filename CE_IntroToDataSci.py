@@ -86,6 +86,30 @@ Week 2
 
 pd.series(VOI_list)
 
+import numpy as np
+np.nan == None
+np.nan == np.nan
+np.isnan(np.nan)
+
+s = pd.Series({'Archery': 'Bhutan', 'Golf': 'Scotland', 'Sumo': 'Japan', 'Taekwondo': 'South Korea'})
+s = pd.Series(['Tiger', 'Bear', 'Moose'], index=['India', 'America', 'Canada'])
+
+------------------------
+Archery           Bhutan
+Golf            Scotland
+Sumo               Japan
+Taekwondo    South Korea
+------------------------
+dtype: object
+
+> s.iloc[3]  / s[3]
+'South Korea'
+> s.loc['Golf'] / s['Golf']
+'Scotland'
+
+#this creates a big series of random numbers
+s = pd.Series(np.random.randint(0,1000,10000))
 
 
-    
+
+
