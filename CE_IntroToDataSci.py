@@ -42,6 +42,8 @@ my_function = lambda a, b, c : a + b
 my_function(1, 2, 3)
   3
 
+  List comprehension
+
 my_list = [number for number in range(0,1000) if number % 2 == 0]
 my_list
   [0,
@@ -53,3 +55,31 @@ my_list
    12,
    14...]
  
+  NumPy
+np.array
+np.arange
+VOI.reshape
+np.linspace
+VOI.resize
+np.ones
+np.zeros
+np.eye
+np.diag
+np.repeat
+np.vstack
+np.hstack
+VIO.argmax()
+VOI.argmin()
+
+# start @ 5th element from the end, count backwards by 2 until @ beginning.
+s[-5::-2]
+
+# Complete copy to memory
+r_copy = r.copy()
+r_copy
+
+# Use `zip` to iterate over multiple iterables.
+for i, j in zip(test, test2):
+    print(i,'+',j,'=',i+j)
+
+    
