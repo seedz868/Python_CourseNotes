@@ -82,4 +82,10 @@ r_copy
 for i, j in zip(test, test2):
     print(i,'+',j,'=',i+j)
 
+Week 2
+
+pd.series(VOI_list)
+
+
+
     
