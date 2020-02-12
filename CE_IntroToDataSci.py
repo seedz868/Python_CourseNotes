@@ -110,6 +110,46 @@ dtype: object
 #this creates a big series of random numbers
 s = pd.Series(np.random.randint(0,1000,10000))
 
+-----
 
+original_sports = pd.Series({'Archery': 'Bhutan',
+                             'Golf': 'Scotland',
+                             'Sumo': 'Japan',
+                             'Taekwondo': 'South Korea'})
+cricket_loving_countries = pd.Series(
+                                    ['Australia','Barbados','Pakistan','England'], 
+                              index=['Cricket','Cricket','Cricket','Cricket']
+                                    )
 
+RENAME
+  df.rename(columns={col:'Gold' + col[4:]}, inplace=True)
+
+WHERE STATEMENT
+  only_gold = df.where(df['Gold'] > 0)
+ 
+len(df[
+    (df['Gold'] > 0) 
+    | 
+    (df['Gold.1'] > 0)
+    ])
+
+df[
+    (df['Gold.1'] > 0) 
+    & 
+    (df['Gold']  == 0)
+  ]
+
+INDEXING a DATAFRAME
+
+df['country'] = df.index # make a series that is your index, to be safe
+df = df.set_index('Gold') # set the index to the Gold column
+df = df.reset_index()
+df = df.set_index(['STNAME', 'CTYNAME'])
+df.loc[[ # looking up 2 values with this new set of indices
+      ('Michigan', 'Washtenaw County'),      
+      ('Michigan', 'Wayne County')
+      ]]
+df = df.set_index('time')
+df = df.sort_index()
+df = df.fillna(method='ffill')
 
