@@ -153,3 +153,66 @@ df = df.set_index('time')
 df = df.sort_index()
 df = df.fillna(method='ffill')
 
+df['SUMLEV'].unique()
+
+MISSING VALUES
+
+df = df.set_index('time')
+df = df.sort_index()
+df = df.reset_index()
+df = df.set_index(['time', 'user'])
+df = df.fillna(method='ffill')
+
+
+Week 3
+
+Merge data
+#make inital data frame
+df = pd.DataFrame([{'Name': 'Chris', 'Item Purchased': 'Sponge', 'Cost': 22.50},
+                   {'Name': 'Kevyn', 'Item Purchased': 'Kitty Litter', 'Cost': 2.50},
+                   {'Name': 'Filip', 'Item Purchased': 'Spoon', 'Cost': 5.00}],
+                  index=['Store 1', 'Store 1', 'Store 2'])
+# add 3 columns
+df['Date'] = ['December 1', 'January 1', 'mid-May']
+df['Delivered'] = True
+df['Feedback'] = ['Positive', None, 'Negative']
+
+	     |Cost	Item Purchased	Name	Date	      Delivered	Feedback
+------------------------------------------------------------------
+Store 1|22.5	Sponge	        Chris	December 1	True	    Positive
+Store 1|2.5	  Kitty Litter	  Kevyn	January 1	  True	    None
+Store 2|5.0	  Spoon	          Filip	mid-May	    True	    Negative
+
+adf = df.reset_index()
+adf['Date'] = pd.Series({0: 'December 1', 2: 'mid-May'})
+#updating the date column, but specifying which to update and how
+#Store number is called index cuz it WAS the index
+ |index	  Cost	Item Purchased	Name	Date	      Delivered	Feedback
+--------------------------------------------------------------------
+0|Store 1	22.5	Sponge	        Chris	December 1	True	    Positive
+1|Store 1	2.5	  Kitty Litter	  Kevyn	NaN	        True	    None
+2|Store 2	5.0	  Spoon	          Filip	mid-May	    True	    Negative
+
+staff_df = staff_df.set_index('Name')
+student_df = student_df.set_index('Name')
+
+pd.merge(staff_df, student_df, how='outer', left_index=True, right_index=True)
+                                   'inner'
+                                   'left'
+                                   'right'
+pd.merge(staff_df, student_df, how='left', left_on='Name', right_on='Name')
+
+
+Group By
+
+
+Scales 
+
+
+Pivot tables
+
+
+
+
+
+
