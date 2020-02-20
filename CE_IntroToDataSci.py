@@ -202,10 +202,81 @@ pd.merge(staff_df, student_df, how='outer', left_index=True, right_index=True)
                                    'right'
 pd.merge(staff_df, student_df, how='left', left_on='Name', right_on='Name')
 
+Idiomatic
+
+(df.where(df['SUMLEV']==50)
+   .dropna()
+   .set_index(['STNAME','CTYNAME'])
+   .rename(columns={'ESTIMATESBASE2010': 'Estimates Base 2010'}))
+# Bracket allow you to write code in multiple lines
+
+# Applying a function to some or all the rows of a data frame,
+import numpy as np
+def min_max(row):
+    data = row[['POPESTIMATE2010',
+                'POPESTIMATE2011',
+                'POPESTIMATE2012',
+                'POPESTIMATE2013',
+                'POPESTIMATE2014',
+                'POPESTIMATE2015']]
+    return pd.Series({'min': np.min(data), 'max': np.max(data)})
+	# This returns only the new cols, plus indices
+# OR #  This returns the original DF, plus the new calculations
+    row['max'] = np.max(data)
+    row['min'] = np.min(data)
+    return row
+
+df.apply(min_max, axis=1) # normall a 0 for rows but a 1 here
+# OR #
+rows = ['POPESTIMATE2010',
+        'POPESTIMATE2011',
+        'POPESTIMATE2012',
+        'POPESTIMATE2013',
+        'POPESTIMATE2014',
+        'POPESTIMATE2015']
+df.apply(lambda x: np.max(x[rows]), axis=1)
+# similar to first example
+
 
 Group By
+for group, frame in df.groupby('STNAME'): # kinda like enumerate
+    avg = np.average(frame['CENSUS2010POP'])
+    print('Counties in state ' + group + ' have an average population of ' + str(avg))
 
+# prolly not useful but 
 
+df = df.set_index('STNAME')
+def fun(item): # break up depending on 1st letter of STNAME
+    if item[0]<'M':
+        return 0
+    if item[0]<'Q':
+        return 1
+    return 2
+
+for group, frame in df.groupby(fun): # pass in a function
+    print('There are ' + str(len(frame)) + ' records in group ' + str(group) + ' for processing.')
+
+# running average or sum over some cols.
+(df.groupby('STNAME')
+   .agg({'CENSUS2010POP': np.average }
+)
+(df.set_index('STNAME')
+   .groupby(level=0)['CENSUS2010POP']  # not sure what level=0 means
+   .agg({'avg': np.average, 'sum': np.sum})
+)
+# all the calculation over all the cols
+(df.set_index('STNAME')
+   .groupby(level=0)['POPESTIMATE2010','POPESTIMATE2011']
+   .agg({'avg': np.average, 'sum': np.sum})
+)
+#specific calculation over specific cols
+(df.set_index('STNAME')
+   .groupby(level=0)['POPESTIMATE2010','POPESTIMATE2011']
+   .agg({'POPESTIMATE2010': np.average, 'POPESTIMATE2011': np.sum})
+)
+
+ 
+ 
 Scales 
 
 
