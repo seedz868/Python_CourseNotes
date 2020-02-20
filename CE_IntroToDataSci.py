@@ -275,14 +275,25 @@ for group, frame in df.groupby(fun): # pass in a function
    .agg({'POPESTIMATE2010': np.average, 'POPESTIMATE2011': np.sum})
 )
 
- 
- 
 Scales 
 
+df = pd.DataFrame(['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D'],
+            index=['excellent', 'excellent', 'excellent', 'good', 'good', 'good', 'ok', 'ok', 'ok', 'poor', 'poor'])
+df.rename(columns={0: 'Grades'}, inplace=True)
 
+         df['Grades'].astype('category')
+# or give order to the category
+grades = df['Grades'].astype('category',
+                             categories=['D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+'],
+                             ordered=True)
+pd.cut(df['avg'],10)
+ #splits into 10 bins, split on the avg column. equal distance not equal size
+ 
+ 
 Pivot tables
 
-
+df.pivot_table(values='(kW)', index='YEAR', columns='Make', aggfunc=np.mean)
+df.pivot_table(values='(kW)', index='YEAR', columns='Make', aggfunc=[np.mean,np.min], margins=True)
 
 
 
