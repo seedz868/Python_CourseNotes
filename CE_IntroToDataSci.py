@@ -295,6 +295,82 @@ Pivot tables
 df.pivot_table(values='(kW)', index='YEAR', columns='Make', aggfunc=np.mean)
 df.pivot_table(values='(kW)', index='YEAR', columns='Make', aggfunc=[np.mean,np.min], margins=True)
 
+Date Time
+
+pd.Timestamp('9/1/2016 10:05AM')
+pd.Period('1/2016')
+pd.Period('3/5/2016')
+t1 = pd.Series(list('abc'), [pd.Timestamp('2016-09-01'), pd.Timestamp('2016-09-02'), pd.Timestamp('2016-09-03')])
+t2 = pd.Series(list('def'), [pd.Period('2016-09')      , pd.Period('2016-10')      , pd.Period('2016-11')      ])
+
+ # Converting to Datetime
+d1 = ['2 June 2013', 'Aug 29, 2014', '2015-06-26', '7/12/16']
+ts3 = pd.DataFrame(np.random.randint(10, 100, (4,2)), index=d1, columns=list('ab'))
+ts3
+	      |a   b
+--------------|-------
+2 June 2013   |62  93
+Aug 29, 2014  |65  35
+2015-06-26    |63  76
+7/12/16	      |96  44
+ # cORRECT index to same format
+ts3.index = pd.to_datetime(ts3.index)
 
 
+	   |a	 b
+-----------|--------
+2013-06-02 |62	 93
+2014-08-29 |65	 35
+2015-06-26 |63	 76
+2016-07-12 |96	 44
+ 
+pd.to_datetime('4.7.12', dayfirst=True)
+
+ # Time Deltas
+ pd.Timestamp('9/3/2016')-pd.Timestamp('9/1/2016')
+ pd.Timestamp('9/2/2016 8:10AM') + pd.Timedelta('12D 3H')
+ 
+ dates = pd.date_range('10-01-2016', periods=9, freq='2W-SUN')
+ 	DatetimeIndex([ '2016-10-02'
+		       ,'2016-10-16'
+		       ,'2016-10-30'
+		       ,'2016-11-13'
+               	       ,'2016-11-27'
+		       , '2016-12-11'
+		       , '2016-12-25'
+		       , '2017-01-08'
+                       , '2017-01-22']
+		       , dtype='datetime64[ns]'
+		       , freq='2W-SUN')
+ 
+df = pd.DataFrame({'Count 1': 100 + np.random.randint(-5, 10, 9).cumsum(),
+                  'Count 2': 120 + np.random.randint(-5, 10, 9)}, index=dates)
+ 
+df = pd.DataFrame({'Count 1': 100 + np.random.randint(-5, 10, 9).cumsum(),
+                  'Count 2': 120 + np.random.randint(-5, 10, 9)}, index=dates)
+ 
+ df.index.weekday_name
+ 	array(['Sunday'
+	     , 'Sunday'
+	     , 'Sunday'
+	     , 'Sunday'
+	     , 'Sunday'
+	     , 'Sunday'
+	     , 'Sunday'
+	     , 'Sunday'
+	     , 'Sunday']
+	     , dtype=object)
+# ROlling delta between rows.
+df.diff()
+#mean for each month
+df.resample('M').mean()
+df['2017'] # dates in 2017
+df['2016-12'] # dates in dec 2016
+df['2016-12':] # dates from dec 2016 go forward
+df.asfreq('W', method='ffill') # df has every 2 week, so 'W' makes it weekly, and fills in each week with the value from the week before
+ 
+# simple plot
+import matplotlib.pyplot as plt
+%matplotlib inline
+df.plot()
 
