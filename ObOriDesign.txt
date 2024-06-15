@@ -1,0 +1,72 @@
+Object-Oriented Design
+https://www.coursera.org/learn/object-oriented-design/
+
+
+
+Flexible
+Reusable
+Maintainable
+
+Soft Des - lower level aspects f a system
+Soft aarc - higher level asp of a system
+
+
+So as an architect, you have to know a lot about what's out there. 
+But not in a tremendous amount of detail because a lot of the stuff that's out there, 
+isn't going to be useful to you, at least immediately. 
+By the time you might need it, it's probably gone through 10 releases anyway and isn't the same thing. 
+So you have to have the skill of being able to quickly assess various technologies 
+and fit them into your understanding of the discipline.
+
+Well, staying up to date is a bit of a trick. It's about exposing yourself to as much as you can in the outside world and inside your own company, as well. But in particular, you know, look at what the big companies are doing. What's Apple doing? What's Google doing? What's Amazon doing? And you read their blogs. You play with their software. You get an account on whichever tool you want to use and you start using those things. And you use that for inspiration. And just to see how others are approaching architecture in their systems, right? So there's a number of levels of inspiration there, I think. Additionally, read a lot of just the general tech press and find out what's going on out there in the world.
+
+
+The advice you give to new software architect is the same advice you give to a musician. Try and play with people who are much better than you are because that's how you become a better architect. And that means working with people who are better than you are. 
+
+
+Requirement and design
+
+
+CRC - class, respobsibility, collaborators (other classes)
+
+Classes are the primary way that the problem domain is represented in object-oriented paradigm. Objects are instances of classes.
+
+Encapsulation: 
+
+Decomposition:
+  fixed and dynamic
+  liftimes
+
+Generalization
+  DRY dont repeat yourself
+
+"Robust software solutions"
+
+getter   get private data
+setter   set private data?
+
+
+Decomposition
+  assoociation - can not be things that are required for one of them to exist, eg human+organ
+  aggregation  - a "has a" relationship where a whole has parts that belong to it. WEAK
+  composiution - exclusive containment of parts, a STRONG "has a" relationship
+
+
+
+Separation of Concerns 
+
+Information hiding
+  Information hiding allows models of our system to give others the minimum amount of information needed to use them correctly and hide everything else. Information hiding allows a developer to work on a module separately with other developers needing to know the implementation details of this module. They can only use this module through its interface. In general things that might change, like implementation details, should be hidden. And things that should not change, like assumptions, are revealed through interfaces.
+
+
+ conceptual integrity. 
+  Conceptual integrity is about creating consistent software
+  
+abstraction, encapsulation, decomposition and generalization. 
+Each of these principles requires you to make a decision on how they apply to your system.
+ What attributes and behaviors do you need to model in a class through abstraction? 
+ How are these attributes and behaviors grouped together and accessed through encapsulation? 
+ Can my classes be simplified into smaller parts using decomposition? 
+ Are there common things across my objects that can be generalized?
+
+
